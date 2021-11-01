@@ -5,6 +5,7 @@ import './App.css';
 function App() {
   return (
     <main className="App">
+      <h1>Desafio Digital Republic</h1>
       <Home />
     </main>
   );
