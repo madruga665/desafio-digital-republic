@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import MainContext from '../../contexts/MainContext';
 import style from './styles.module.scss';
 
 export default function ResultBox() {
+  const { litros, paintBuckets } = useContext(MainContext);
+
   return (
     <div className={style.resultBoxBorder}>
       <div className={style.resultBoxContainer}>
@@ -12,6 +15,10 @@ export default function ResultBox() {
           <option value="">3,6</option>
           <option value="">18</option>
         </select>
+        <div className={style.result}>
+          <span>{litros} Litros</span>
+          <span>{paintBuckets} Latas</span>
+        </div>
       </div>
     </div>
   );
