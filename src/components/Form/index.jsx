@@ -1,40 +1,50 @@
-/* eslint-disable react/prop-types */
 import React, { useContext, useState } from 'react';
 import MainContext from '../../contexts/MainContext';
 import { calculateArea } from '../../utils/calculateArea';
 import { calculateLitros } from '../../utils/calculateLitros';
+import { subtractWindowAndDoorArea } from '../../utils/subtractWindowAndDoorArea';
+import { sunTotalAreaWindowsAndDoors } from '../../utils/sunTotalAreaWindowsAndDoors';
 import styles from './styles.module.scss';
 
 export default function Form() {
   const { litros, setLitros } = useContext(MainContext);
   const [height, setHeight] = useState('');
   const [width, setWidth] = useState('');
-  const [door, setDoor] = useState(0);
-  const [window, setWindow] = useState(0);
+  const [door, setDoor] = useState('');
+  const [window, setWindow] = useState('');
   const [wall, setWall] = useState('Parede');
   const [wallNumber, setWallNumber] = useState(1);
+  const [disableButton, setDisableButton] = useState(false);
 
-  console.log(door, window);
+  const resetValues = () => {
+    setHeight('');
+    setWidth('');
+    setDoor('');
+    setWindow('');
+  };
+
+  const handleRestart = () => {
+    resetValues();
+    setLitros(0);
+    setWall('Parede');
+    setWallNumber(1);
+    setDisableButton(false);
+  };
 
   const handleSubmit = () => {
     const squareMeter = calculateArea(Number(height), Number(width));
-    const result = calculateLitros(squareMeter);
-    setLitros(Number(litros + result).toFixed(2));
+    const totalAreaToSubtract = sunTotalAreaWindowsAndDoors(Number(window), Number(door));
+    const subtractArea = subtractWindowAndDoorArea(squareMeter, totalAreaToSubtract);
+    const result = calculateLitros(subtractArea);
+    setLitros(litros + result);
     setWallNumber(wallNumber + 1);
-    setHeight('');
-    setWidth('');
+    resetValues();
 
     if (wallNumber === 4) {
       setWallNumber('');
-      setWall('Finalizado! confira o resultado ao lado')
+      setWall('Finalizado! confira o resultado ao lado');
+      setDisableButton(true);
     }
-  };
-
-  const reset = () => {
-    setLitros(0);
-    setHeight('');
-    setWidth('');
-    setWallNumber(1);
   };
 
   return (
@@ -71,6 +81,7 @@ export default function Form() {
               <label htmlFor="door">Porta</label>
               <input 
                 onChange={(event) => setDoor(event.target.value)} 
+                value={door}
                 type="number" 
                 id='door' 
                 placeholder='Quantidade de portas' 
@@ -81,19 +92,21 @@ export default function Form() {
             <div className={styles.inputContainer}>
               <label htmlFor="window">Janela</label>
               <input 
-                onChange={(event) => setWindow(event.target.value)} 
+                onChange={(event) => setWindow(event.target.value)}
+                value={window}
                 type="number" 
                 id='window' 
-                placeholder='Quantidade de janelas' min='0'
+                placeholder='Quantidade de janelas' 
+                min='0'
               />
             </div>
           </div>
         </form>
           <div className={styles.buttonContainer}>
-            <button onClick={reset} type='button'>Reiniciar</button>
-            <button onClick={handleSubmit} type='button'>Salvar</button>
+            <button onClick={handleRestart} type='button'>Reiniciar</button>
+            <button onClick={handleSubmit} type='button' disabled={disableButton}>Salvar</button>
           </div>
       </div>
     </div>
-  )
+  );
 }
