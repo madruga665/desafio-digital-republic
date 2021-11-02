@@ -56,8 +56,8 @@ export default function Form() {
           </div>
         </form>
           <div className={styles.buttonContainer}>
-            <button onClick={handleSubmit} type='button'>Salvar</button>
             <button onClick={handleSubmit} type='button'>Reiniciar</button>
+            <button onClick={handleSubmit} type='button'>Salvar</button>
           </div>
       </div>
     </div>

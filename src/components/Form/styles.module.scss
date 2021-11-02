@@ -52,3 +52,21 @@
     }
   }
 }
+
+.buttonContainer {
+  button {
+    background: #121214;
+    border: 1px solid #F64F12;
+    border-radius: 5px;
+    font-weight: bold;
+    color: #FFF;
+    padding: 10px;
+    margin-right: 10px;
+    transition: 300ms;
+    cursor: pointer;
+  }
+
+  button:hover {
+    border: 1px solid #FD910C;
+  }
+}
