@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import MainContext from './MainContext';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 
 export default function MainProvider({ children }) {
   const [litros, setLitros] = useState(0);
