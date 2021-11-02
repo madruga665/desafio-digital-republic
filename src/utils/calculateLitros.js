@@ -1,4 +1,4 @@
 export const calculateLitros = (squareMeter) => {
-  const result = squareMeter / 5;
+  const result = (squareMeter / 5);
   return result;
 };

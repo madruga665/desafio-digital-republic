@@ -19,7 +19,7 @@ export default function Form() {
   const handleSubmit = () => {
     const squareMeter = calculateArea(Number(height), Number(width));
     const result = calculateLitros(squareMeter);
-    setLitros(litros + result);
+    setLitros(Number(litros + result).toFixed(2));
     setWallNumber(wallNumber + 1);
     setHeight('');
     setWidth('');
