@@ -7,10 +7,7 @@ export default function Home() {
   return (
     <div className={styles.homeWrapper}>
       <div className={styles.formContainer}>
-        <Form title='Parede 1'/>
-        <Form title='Parede 2'/>
-        <Form title='Parede 3'/>
-        <Form title='Parede 4'/>
+        <Form />
       </div>
 
       <div className={styles.resultContainer}>
