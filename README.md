@@ -5,7 +5,7 @@ Neste projeto foi desenvolvido uma aplicação para calcular o quanto de tinta s
 - Calcular a quantidade de tinta para pintar uma sala de 4 paredes.
 - Calcular quantas latas de tinta são necessárias para pintar a sala.
 
-## Tecnologias
+## ✨️ Tecnologias
 Esse projeto foi desenvolvido com as seguintes tecnologias:
 - [React.js](https://pt-br.reactjs.org/)
 - [Sass](https://sass-lang.com/)
