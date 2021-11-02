@@ -7,15 +7,9 @@ export default function MainProvider({ children }) {
   const [litros, setLitros] = useState(0);
   const [paintBuckets, setPaintBuckets] = useState(0);
 
-  const calculateArea = (heigth, width) => {
-    const result = heigth * width;
-    return result;
-  };
-
   const GlobalState = {
     litros,
     paintBuckets,
-    calculateArea,
     setLitros,
     setPaintBuckets,
   };
