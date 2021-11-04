@@ -4,6 +4,7 @@ import { calculateArea } from '../../utils/calculateArea';
 import { calculateLitros } from '../../utils/calculateLitros';
 import { subtractWindowAndDoorArea } from '../../utils/subtractWindowAndDoorArea';
 import { sunTotalAreaWindowsAndDoors } from '../../utils/sunTotalAreaWindowsAndDoors';
+import { validates } from '../../validations/validations';
 import styles from './styles.module.scss';
 
 export default function Form() {
@@ -15,12 +16,14 @@ export default function Form() {
   const [wall, setWall] = useState('Parede');
   const [wallNumber, setWallNumber] = useState(1);
   const [disableButton, setDisableButton] = useState(false);
+  const [ error, setError ] = useState({});
 
   const resetValues = () => {
     setHeight('');
     setWidth('');
     setDoor('');
     setWindow('');
+    setError('');
   };
 
   const handleRestart = () => {
@@ -31,16 +34,25 @@ export default function Form() {
     setDisableButton(false);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (event) => {
+    event.preventDefault();
     const squareMeter = calculateArea(Number(height), Number(width));
     const totalAreaToSubtract = sunTotalAreaWindowsAndDoors(Number(window), Number(door));
     const subtractArea = subtractWindowAndDoorArea(squareMeter, totalAreaToSubtract);
     const result = calculateLitros(subtractArea);
-    setLitros(litros + result);
-    setWallNumber(wallNumber + 1);
-    resetValues();
+  
+    const ErrorMessage = validates(height, width, door, squareMeter, subtractArea);
 
-    if (wallNumber === 4) {
+    if (ErrorMessage) {
+      setError({...ErrorMessage});
+
+    } else {
+      setLitros(litros + result);
+      setWallNumber(wallNumber + 1);
+      resetValues();
+    }
+
+    if (wallNumber === 4 && !ErrorMessage) {
       setWallNumber('');
       setWall('Finalizado! confira o resultado ao lado');
       setDisableButton(true);
@@ -49,9 +61,9 @@ export default function Form() {
 
   return (
     <div className={styles.formBorder }>
-      <div className={styles.formContentWrapper}>
+      <form className={styles.formContentWrapper} onSubmit={handleSubmit}>
         <h2>{`${wall} ${wallNumber}`}</h2>
-        <form className={styles.formContainer}>
+        <div className={styles.formContainer}>
           <div className={styles.groupContainer}>
             <div className={styles.inputContainer}>
               <label htmlFor="height">Altura</label>
@@ -60,8 +72,19 @@ export default function Form() {
                 value={height}
                 type="number" 
                 id='height' 
-                placeholder='ex: 4,80m' min='0'
+                name='height'
+                placeholder='ex: 4,80m'
+                style={{border: error.errorHeight ? '2px solid #F61212' : ''}}
               />
+              <span className={styles.errorMessage}>
+                {error.errorHeight}
+              </span>
+              <span className={styles.errorMessage}>
+                {error.errorWallHeigthWithDoor}
+              </span>
+              <span className={styles.errorMessage}>
+                {error.errorMaxSubtractArea}
+              </span>
             </div>
 
             <div className={styles.inputContainer}>
@@ -70,10 +93,15 @@ export default function Form() {
                 onChange={(event) => setWidth(event.target.value)}
                 value={width}
                 type="number" 
-                id='width' 
-                placeholder='ex: 6,80m' min='0' 
+                id='width'
+                name='width'
+                placeholder='ex: 6,80m'
+                style={{border: error.errorWidth ? '2px solid #F61212' : ''}}
               />
             </div>
+            <span className={styles.errorMessage}>
+              {error.errorWidth}
+            </span>
           </div>
 
           <div className={styles.groupContainer}>
@@ -101,12 +129,12 @@ export default function Form() {
               />
             </div>
           </div>
-        </form>
+        </div>
           <div className={styles.buttonContainer}>
             <button onClick={handleRestart} type='button'>Reiniciar</button>
-            <button onClick={handleSubmit} type='button' disabled={disableButton}>Salvar</button>
+            <button type='submit' disabled={disableButton}>Salvar</button>
           </div>
-      </div>
+      </form>
     </div>
   );
 }
