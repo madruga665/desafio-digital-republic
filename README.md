@@ -9,7 +9,6 @@ Neste projeto foi desenvolvido uma aplicação para calcular o quanto de tinta s
 Esse projeto foi desenvolvido com as seguintes tecnologias:
 - [React.js](https://pt-br.reactjs.org/)
 - [Sass](https://sass-lang.com/)
-- [Yup](https://github.com/jquense/yup)
 
 ## 🌐️ Deploy da aplicação.
 
