@@ -4,8 +4,7 @@ import { calculateArea } from '../../utils/calculateArea';
 import { calculateLitros } from '../../utils/calculateLitros';
 import { subtractWindowAndDoorArea } from '../../utils/subtractWindowAndDoorArea';
 import { sunTotalAreaWindowsAndDoors } from '../../utils/sunTotalAreaWindowsAndDoors';
-import { validation } from '../../validations/validations';
-// import { wallMesurements } from  '../../validations/validations';
+import { validates } from '../../validations/validations';
 import styles from './styles.module.scss';
 
 export default function Form() {
@@ -18,17 +17,6 @@ export default function Form() {
   const [wallNumber, setWallNumber] = useState(1);
   const [disableButton, setDisableButton] = useState(false);
   const [ error, setError ] = useState({});
-
-  // const validation = async () => {
-  //   const formData = {
-  //     height: height,
-  //     width: width,
-  //   };
-  //   console.log(formData)
-  //   const isValid = await wallMesurements.isValid(formData);
-  //   console.log(isValid);
-  // }
-
 
   const resetValues = () => {
     setHeight('');
@@ -56,9 +44,11 @@ export default function Form() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const errorMessage = validation(height, width);
-    if (errorMessage) {
-      setError({...errorMessage});
+    const ErrorMessage = validates(height, width, door);
+
+    if (ErrorMessage) {
+      setError({...ErrorMessage});
+
     } else {
       const result = calculateResult();
       setLitros(litros + result);
@@ -66,7 +56,7 @@ export default function Form() {
       resetValues();
     }
 
-    if (wallNumber === 4) {
+    if (wallNumber === 4 && !ErrorMessage) {
       setWallNumber('');
       setWall('Finalizado! confira o resultado ao lado');
       setDisableButton(true);
@@ -90,7 +80,12 @@ export default function Form() {
                 placeholder='ex: 4,80m'
                 style={{border: error.errorHeight ? '2px solid #F61212' : ''}}
               />
-              <span className={styles.errorMessage}>{error.errorHeight}</span>
+              <span className={styles.errorMessage}>
+                {error.errorHeight}
+              </span>
+              <span className={styles.errorMessage}>
+                {error.errorWallHeigthWithDoor}
+              </span>
             </div>
 
             <div className={styles.inputContainer}>

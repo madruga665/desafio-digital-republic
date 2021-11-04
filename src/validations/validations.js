@@ -1,4 +1,4 @@
-export const validation = (height, width) => {
+export const validates = (height, width, doorQuantity) => {
   
   if (Number(height) < 1 || Number(height) > 15) {
     return {
@@ -10,4 +10,9 @@ export const validation = (height, width) => {
       errorWidth: 'Largura mínima 1 metro e máxima 15 metros'
     }
   }
-}
+  if (height < 2.20 && doorQuantity >= 1) {
+    return {
+      errorWallHeigthWithDoor: 'Paredes com porta devem ter no minimo 2.20m de altura'
+    }
+  }
+};
