@@ -1,4 +1,4 @@
-export const validates = (height, width, doorQuantity) => {
+export const validates = (height, width, doorQuantity, squareMeter, subtractArea) => {
   
   if (Number(height) < 1 || Number(height) > 15) {
     return {
@@ -13,6 +13,11 @@ export const validates = (height, width, doorQuantity) => {
   if (height < 2.20 && doorQuantity >= 1) {
     return {
       errorWallHeigthWithDoor: 'Paredes com porta devem ter no minimo 2.20m de altura'
+    }
+  }
+  if ((squareMeter / 2) >= subtractArea ) {
+    return {
+      errorMaxSubtractArea: 'A area maxima de portas e janelas deve ser menor que 50% da area da parede'
     }
   }
 };

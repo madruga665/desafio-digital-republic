@@ -34,23 +34,19 @@ export default function Form() {
     setDisableButton(false);
   };
 
-  const calculateResult = () => {
+  const handleSubmit = (event) => {
+    event.preventDefault();
     const squareMeter = calculateArea(Number(height), Number(width));
     const totalAreaToSubtract = sunTotalAreaWindowsAndDoors(Number(window), Number(door));
     const subtractArea = subtractWindowAndDoorArea(squareMeter, totalAreaToSubtract);
     const result = calculateLitros(subtractArea);
-    return result;
-  }
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const ErrorMessage = validates(height, width, door);
+  
+    const ErrorMessage = validates(height, width, door, squareMeter, subtractArea);
 
     if (ErrorMessage) {
       setError({...ErrorMessage});
 
     } else {
-      const result = calculateResult();
       setLitros(litros + result);
       setWallNumber(wallNumber + 1);
       resetValues();
@@ -85,6 +81,9 @@ export default function Form() {
               </span>
               <span className={styles.errorMessage}>
                 {error.errorWallHeigthWithDoor}
+              </span>
+              <span className={styles.errorMessage}>
+                {error.errorMaxSubtractArea}
               </span>
             </div>
 
