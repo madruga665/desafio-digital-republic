@@ -1,7 +1,7 @@
 import React from 'react';
 import '@testing-library/jest-dom/extend-expect';
 import { render, screen } from '@testing-library/react';
-import App from '../App';
+import App from '../../App';
 
 describe('Verifica se a pagina tem title e subtitle', () => {
   test('testa se a pagina tem o titulo', () => {
