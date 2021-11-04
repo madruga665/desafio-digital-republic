@@ -8,6 +8,7 @@ function App() {
     <MainProvider>
       <main className="App">
         <h1>Desafio Digital Republic</h1>
+        <h3>Calcule a quantidade de tinta para pintar uma sala</h3>
         <Home />
       </main>
     </MainProvider>
