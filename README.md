@@ -1,4 +1,4 @@
-# Desafio Digital Republic
+# 🚀️ Desafio Digital Republic
 
 Neste projeto foi desenvolvido uma aplicação para calcular o quanto de tinta será usado para pintar uma sala com 4 paredes, ao utilizar a aplicação a pessoa será capaz de:
 
