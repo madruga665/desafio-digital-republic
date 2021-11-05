@@ -17,7 +17,7 @@ export default function ResultBox() {
       <div className={style.resultBoxContainer}>
         <label htmlFor="bucketSize">Escolha o tamanho da lata de tinta</label>
         <select onChange={(event) => setBucketSize(event.target.value)} id="bucketSize" >
-          <option hidden value={0.5}>-</option>
+          <option hidden value={0}>-</option>
           <option value={0.5}>0,5 Litros</option>
           <option value={2.5}>2,5 Litros</option>
           <option value={3.6}>3,6 Litros</option>
