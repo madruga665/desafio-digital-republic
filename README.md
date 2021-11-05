@@ -12,7 +12,7 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 ## 🌐️ Deploy da aplicação.
 
-[click aqui para acessar a aplicação]()
+[click aqui para acessar a aplicação](https://madruga665.github.io/desafio-digital-republic/)
 
 ## 🏃‍♀️ Como rodar o projeto na sua maquina?
 
@@ -37,4 +37,11 @@ npm install
 
 ```
 npm start
+```
+## 🤖️ Testes
+
+### Para rodar os testes use o comando:
+
+```
+npm run test
 ```
