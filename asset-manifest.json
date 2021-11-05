@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/desafio-digital-republic/static/css/main.622a57a8.chunk.css",
+    "main.js": "/desafio-digital-republic/static/js/main.71b4654d.chunk.js",
+    "main.js.map": "/desafio-digital-republic/static/js/main.71b4654d.chunk.js.map",
+    "runtime-main.js": "/desafio-digital-republic/static/js/runtime-main.6495eeb9.js",
+    "runtime-main.js.map": "/desafio-digital-republic/static/js/runtime-main.6495eeb9.js.map",
+    "static/js/2.09d6d547.chunk.js": "/desafio-digital-republic/static/js/2.09d6d547.chunk.js",
+    "static/js/2.09d6d547.chunk.js.map": "/desafio-digital-republic/static/js/2.09d6d547.chunk.js.map",
+    "static/js/3.215dedfc.chunk.js": "/desafio-digital-republic/static/js/3.215dedfc.chunk.js",
+    "static/js/3.215dedfc.chunk.js.map": "/desafio-digital-republic/static/js/3.215dedfc.chunk.js.map",
+    "index.html": "/desafio-digital-republic/index.html",
+    "static/css/main.622a57a8.chunk.css.map": "/desafio-digital-republic/static/css/main.622a57a8.chunk.css.map",
+    "static/js/2.09d6d547.chunk.js.LICENSE.txt": "/desafio-digital-republic/static/js/2.09d6d547.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.6495eeb9.js",
+    "static/js/2.09d6d547.chunk.js",
+    "static/css/main.622a57a8.chunk.css",
+    "static/js/main.71b4654d.chunk.js"
+  ]
+}
