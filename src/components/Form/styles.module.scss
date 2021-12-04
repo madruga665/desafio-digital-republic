@@ -35,6 +35,22 @@
   padding: 10px 0;
   border: 1px solid #F64F12;
   border-radius: 10px;
+
+  .inputContainer {
+    display: flex;
+    flex-direction: column;
+
+    input {
+      border: none;
+      border-radius: 5px;
+      height: 20px;
+      text-align: center;
+    }
+
+    label {
+      margin: 5px 0;
+    }
+  }
 }
 
 .buttonContainer {
