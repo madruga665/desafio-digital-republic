@@ -52,7 +52,7 @@ describe('Verifica os elementos do ResultBox' , () => {
 
 describe('Verifica as informçõe são alteradas conforme o usuário preenche o formulário', () => {
   test('Verifica se o estado litros é alterado corretamente', () => {
-    const { getByRole } = render(
+    const { getByRole, getByText } = render(
       <MainProvider>
         <Form />
         <ResultBox />
@@ -76,12 +76,12 @@ describe('Verifica as informçõe são alteradas conforme o usuário preenche o 
     expect(saveButton).toBeInTheDocument();
     userEvent.click(saveButton);
 
-    const amountOfInkText = screen.getByText(/você precisará de 5\.00 litros de tinta/i)
+    const amountOfInkText = getByText(/você precisará de 5\.00 litros de tinta/i)
     expect(amountOfInkText).toBeInTheDocument();
   });
 
   test('Verifica se o estado litros é alterado corretamente', () => {
-    const { getByRole } = render(
+    const { getByRole, getByText } = render(
       <MainProvider>
         <Form />
         <ResultBox />
@@ -111,7 +111,7 @@ describe('Verifica as informçõe são alteradas conforme o usuário preenche o 
     expect(amountOfBucketsInput).toBeInTheDocument();
     userEvent.selectOptions(amountOfBucketsInput, '0,5 Litros');
 
-    const spanBucket = screen.getByText(/10 latas de 0\.5 litros/i);
+    const spanBucket = getByText(/10 latas de 0\.5 litros/i);
     expect(spanBucket).toBeInTheDocument();
   });
 });
