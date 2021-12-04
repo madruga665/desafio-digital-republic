@@ -52,11 +52,9 @@ describe('Verifica as informçõe são alteradas conforme o usuário preenche o 
     });
     expect(saveButton).toBeInTheDocument();
     userEvent.click(saveButton);
-    
-    const { getByText } = render(
-      <span>Você precisará de 5.00 Litros de tinta</span>
-    );
-    expect(getByText(/você precisará de 5\.00 litros de tinta/i)).toBeInTheDocument();
+
+    const amountOfInkText = screen.getByText(/você precisará de 5\.00 litros de tinta/i)
+    expect(amountOfInkText).toBeInTheDocument();
   });
 
   test('Verifica se o estado litros é alterado corretamente', () => {
@@ -85,9 +83,7 @@ describe('Verifica as informçõe são alteradas conforme o usuário preenche o 
     expect(amountOfBucketsInput).toBeInTheDocument();
     userEvent.selectOptions(amountOfBucketsInput, '0,5 Litros');
 
-    const { getByText } = render(
-      <span>10 latas de 0.5 Litros</span>
-    );
-    expect(getByText(/10 latas de 0\.5 litros/i)).toBeInTheDocument();
+    const spanBucket = screen.getByText(/10 latas de 0\.5 litros/i);
+    expect(spanBucket).toBeInTheDocument();
   });
 });
